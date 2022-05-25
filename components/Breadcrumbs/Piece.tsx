@@ -1,10 +1,10 @@
 import clsx from 'clsx'
 import Link from 'next/link'
-import { ReactChildren } from 'react'
+import { ReactNode } from 'react'
 
 export interface PieceProps {
    path: string
-   children: string | ReactChildren
+   children: ReactNode
    className?: string
 }
 
