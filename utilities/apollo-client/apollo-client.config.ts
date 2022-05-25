@@ -5,12 +5,13 @@ import { createUploadLink } from 'apollo-upload-client'
 import { sha256 } from 'crypto-hash'
 
 const uploadLink = createUploadLink({
-   useGETForQueries: true,
+   uri: process.env.apiUrl,
+   // useGETForQueries: true,
 })
 
 const persistedQueryLink = createPersistedQueryLink({
    sha256,
-   useGETForHashedQueries: true,
+   // useGETForHashedQueries: true,
 })
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
@@ -27,7 +28,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 export const apolloClient = new ApolloClient({
    uri: process.env.apiUrl,
    credentials: 'include',
-   link: from([errorLink, uploadLink, persistedQueryLink]),
+   link: from([errorLink, persistedQueryLink. uploadLink]),
    cache: new InMemoryCache(),
    connectToDevTools: true,
    defaultOptions: {
