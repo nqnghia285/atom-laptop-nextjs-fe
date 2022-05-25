@@ -5,7 +5,7 @@ import { createUploadLink } from 'apollo-upload-client'
 import { sha256 } from 'crypto-hash'
 
 const uploadLink = createUploadLink({
-   uri: process.env.urlApi,
+   uri: process.env.apiUrl,
    credentials: 'include',
    useGETForQueries: true,
 })

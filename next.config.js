@@ -11,7 +11,7 @@ const nextConfig = {
    },
    env: {
       // Environment variables
-      urlApi: process.env.NEXT_PUBLIC_URL_API,
+      apiUrl: process.env.NEXT_PUBLIC_API_URL,
       author: process.env.NEXT_PUBLIC_AUTHOR,
       authorEmail: process.env.NEXT_PUBLIC_AUTHOR_EMAIL,
       authorPhone: process.env.NEXT_PUBLIC_AUTHOR_PHONE,
