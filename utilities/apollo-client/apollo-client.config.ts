@@ -28,7 +28,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 export const apolloClient = new ApolloClient({
    uri: process.env.apiUrl,
    credentials: 'include',
-   link: from([errorLink, persistedQueryLink. uploadLink]),
+   link: from([errorLink, persistedQueryLink, uploadLink]),
    cache: new InMemoryCache(),
    connectToDevTools: true,
    defaultOptions: {
