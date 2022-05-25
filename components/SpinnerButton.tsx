@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import {
    forwardRef,
    memo,
-   ReactChildren,
+   ReactNode,
    Ref,
    useImperativeHandle,
    useRef,
@@ -10,7 +10,7 @@ import {
 import styles from '~/styles/components/spinner-button.module.css'
 
 export interface SpinnerButtonProps {
-   children?: string | ReactChildren
+   children?: ReactNode
    type?: 'button' | 'submit' | 'reset'
    color?: 'info' | 'success' | 'warning' | 'error' | 'default'
    size?: 'fit' | 'half' | 'full'

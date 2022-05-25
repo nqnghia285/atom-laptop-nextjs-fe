@@ -1,9 +1,9 @@
 import clsx from 'clsx'
-import { forwardRef, ReactChildren, Ref } from 'react'
+import { forwardRef, ReactNode, Ref } from 'react'
 import styles from '~/styles/components/button.module.css'
 
 export interface ButtonProps {
-   children?: string | ReactChildren
+   children?: ReactNode
    type?: 'button' | 'submit' | 'reset'
    color?: 'info' | 'success' | 'warning' | 'error' | 'default'
    size?: 'fit' | 'half' | 'full'

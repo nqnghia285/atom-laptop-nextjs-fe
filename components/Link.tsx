@@ -1,9 +1,9 @@
 import NextLink from 'next/link'
-import { memo, ReactChildren } from 'react'
+import { memo, ReactNode } from 'react'
 
 export interface LinkProps {
    path: string
-   children: string | ReactChildren | JSX.Element
+   children: ReactNode
    className?: string
 }
 
