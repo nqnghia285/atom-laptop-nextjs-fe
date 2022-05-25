@@ -1,0 +1,109 @@
+.input {
+   @apply text-gray-700 bg-white border focus:ring flex-shrink;
+   @apply border-gray-400 rounded-md dark:bg-gray-800 dark:text-gray-300;
+   @apply dark:border-gray-600 focus:ring-opacity-40 focus:outline-none;
+}
+
+.input-fit {
+   @apply w-fit h-fit;
+}
+
+.input-half {
+   @apply w-1/2 h-fit;
+}
+
+.input-full {
+   @apply w-full h-fit;
+}
+
+.input-p-xs {
+   @apply px-1 py-1;
+}
+
+.input-p-sm {
+   @apply px-2 py-1;
+}
+
+.input-p-md {
+   @apply px-3 py-2;
+}
+
+.input-p-lg {
+   @apply px-3 py-3;
+}
+
+.input-p-xl {
+   @apply px-4 py-3;
+}
+
+.input-xs {
+   @apply text-xs;
+}
+
+.input-sm {
+   @apply text-sm;
+}
+
+.input-md {
+   @apply text-base;
+}
+
+.input-lg {
+   @apply text-lg;
+}
+
+.input-xl {
+   @apply text-xl;
+}
+
+.input-2xl {
+   @apply text-2xl;
+}
+
+.input-3xl {
+   @apply text-3xl;
+}
+
+.input-4xl {
+   @apply text-4xl;
+}
+
+.input-5xl {
+   @apply text-5xl;
+}
+
+.input-6xl {
+   @apply text-6xl;
+}
+
+.input-7xl {
+   @apply text-7xl;
+}
+
+.input-8xl {
+   @apply text-8xl;
+}
+
+.input-9xl {
+   @apply text-9xl;
+}
+
+.input-error {
+   @apply focus:border-red-400 focus:ring-red-600 dark:focus:border-red-300;
+}
+
+.input-info {
+   @apply focus:border-blue-400 focus:ring-blue-600 dark:focus:border-blue-300;
+}
+
+.input-success {
+   @apply focus:border-emerald-400 focus:ring-emerald-600 dark:focus:border-emerald-300;
+}
+
+.input-warning {
+   @apply focus:border-yellow-400 focus:ring-yellow-600 dark:focus:border-yellow-300;
+}
+
+.disabled {
+   @apply cursor-not-allowed;
+}

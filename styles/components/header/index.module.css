@@ -1,0 +1,7 @@
+.header {
+   @apply flex flex-col w-full h-fit bg-gray-900 invisible;
+}
+
+.show {
+   @apply visible;
+}
