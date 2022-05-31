@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 import useLocalStorage from 'use-local-storage'
 import Link from '~/components/Link'
@@ -12,6 +13,7 @@ export interface UserIconProps {
 }
 
 function UserIcon({ icon }: UserIconProps) {
+   const router = useRouter()
    // eslint-disable-next-line @typescript-eslint/no-unused-vars
    const [profile, setProfile] = useLocalStorage<IUserInfo | null>(
       LSKeys.PROFILE,
@@ -31,6 +33,7 @@ function UserIcon({ icon }: UserIconProps) {
          .then((res) => {
             if (res.isSuccess) {
                setProfile(null)
+               router.push('/login')
             }
          })
          .catch((errors) => console.log(generateErrorMessage(errors)))
@@ -73,7 +76,7 @@ function UserIcon({ icon }: UserIconProps) {
             </li>
             {/* Send the logout request to the system and redirect to the login form */}
             <li onClick={handleLogout}>
-               <Link path='/login'>Log out</Link>
+               <a>Log out</a>
             </li>
          </ul>
       </>
