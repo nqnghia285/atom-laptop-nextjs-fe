@@ -23,10 +23,10 @@ const breadcrumbsSlice = createSlice({
    name: 'breadcrumbs',
    initialState,
    reducers: {
-      setBreadCrumbs(state, action: PayloadAction<BreadcrumbsPath>) {
+      setBreadCrumbs(state: BreadcrumbsPath, action: PayloadAction<BreadcrumbsPath>) {
          return action.payload
       },
-      reset(state) {
+      reset() {
          return initialState
       },
    },
