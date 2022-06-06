@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = typeof window !== 'undefined' ? `${window.location.hostname}/api` : '/api'
+const baseURL = `https://atomlaptop.vercel.app/api`
 const headers = { 'Authorization': window?.localStorage.getItem('authorization') ?? '' }
 
 const axiosClient = axios.create({
