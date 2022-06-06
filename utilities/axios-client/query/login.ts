@@ -5,7 +5,7 @@ export function login(username: string, password: string) {
    console.log('getUri', axiosClient.getUri())
    return new Promise<Response>(async (resolve, reject) => {
       await axiosClient.get('/login', {
-         data: { username, password }
+         params: { username, password }
       })
          .then(res => resolve(res.data))
          .catch(errors => reject(errors))
