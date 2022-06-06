@@ -3,10 +3,11 @@ import { Response } from '~/interface';
 
 export function login(username: string, password: string) {
    console.log('getUri', axiosClient.getUri())
-   return new Promise<Response>((resolve, reject) => {
-      axiosClient.get('/login', {
+   return new Promise<Response>(async (resolve, reject) => {
+      await axiosClient.get('/login', {
          data: { username, password }
-      }).then(res => resolve(res.data))
-      .catch(errors=>reject(errors))
+      })
+         .then(res => resolve(res.data))
+         .catch(errors => reject(errors))
    })
 }
