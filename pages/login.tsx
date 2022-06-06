@@ -49,6 +49,7 @@ const Login: NextPage = () => {
       const password = passwordRef.current
 
       if (username && password) {
+         console.log('handleSubmit')
          client.query
             .login(username.value, password.value)
             .then(({ data, isSuccess, message }) => {
