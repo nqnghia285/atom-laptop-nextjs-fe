@@ -27,6 +27,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 })
 
 export const apolloClient = new ApolloClient({
+   ssrMode: true,
    link: from([
       errorLink,
       persistedQueryLink, 
