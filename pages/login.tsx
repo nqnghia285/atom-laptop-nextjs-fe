@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ApolloError } from '@apollo/client'
+import { AxiosResponse } from 'axios'
 import { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -9,10 +10,10 @@ import useLocalStorage from 'use-local-storage'
 import Alert, { AlertMethods } from '~/components/Alert'
 import IconInputBox from '~/components/IconInputBox'
 import SpinnerButton, { SpinnerButtonMethods } from '~/components/SpinnerButton'
-import { IUserInfo, LSKeys } from '~/interface'
+import { IUserInfo, LSKeys, Response } from '~/interface'
 import styles from '~/styles/pages/login.module.css'
 import { generateErrorMessage } from '~/utilities'
-import client from '~/utilities/axios-client'
+import { axiosClient } from '~/utilities/axios-client'
 
 export const getStaticProps: GetStaticProps = async () => {
    return {
@@ -40,7 +41,7 @@ const Login: NextPage = () => {
       router.push('/')
    }
 
-   function handleSubmit(ev: FormEvent) {
+   async function handleSubmit(ev: FormEvent) {
       ev.preventDefault()
 
       const spinnerButtonMethods = spinnerButtonMethodsRef.current
@@ -50,9 +51,11 @@ const Login: NextPage = () => {
 
       if (username && password) {
          console.log('handleSubmit')
-         client.query
-            .login(username.value, password.value)
-            .then(({ data, isSuccess, message }) => {
+
+         await axiosClient.get('/login', {
+            data: { username: username.value, password: password.value }
+         })
+            .then(({data: { data, isSuccess, message }}: AxiosResponse<Response, any>) => {
                if (isSuccess) {
                   setProfile(data.profile as IUserInfo)
                   setAuthorization(data.accessToken as string)
