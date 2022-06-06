@@ -4,7 +4,7 @@ import {
    EntityState,
 } from '@reduxjs/toolkit'
 import { Laptop } from '~/prisma'
-import { findFirstLaptop, FIND_FIRST_LAPTOP } from '~/utilities'
+import { findFirstLaptop, FIND_FIRST_LAPTOP } from '~/utilities/apollo-client'
 import { laptopsActions } from '../slices/laptop.slice'
 
 const findFirst = createAsyncThunk(
