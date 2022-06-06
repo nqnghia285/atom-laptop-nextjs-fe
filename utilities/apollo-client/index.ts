@@ -11,11 +11,11 @@ const client = {
       laptop: {
          findFirst: findFirstLaptop,
       },
-      login: login,
-      logout: logout,
+      login,
+      logout,
    },
    mutation: {
-      register: register,
+      register,
    },
 }
 

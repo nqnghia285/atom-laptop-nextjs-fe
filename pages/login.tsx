@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ApolloError } from '@apollo/client'
 import { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
@@ -11,7 +12,7 @@ import SpinnerButton, { SpinnerButtonMethods } from '~/components/SpinnerButton'
 import { IUserInfo, LSKeys } from '~/interface'
 import styles from '~/styles/pages/login.module.css'
 import { generateErrorMessage } from '~/utilities'
-import client from '~/utilities/apollo-client'
+import client from '~/utilities/axios-client'
 
 export const getStaticProps: GetStaticProps = async () => {
    return {
@@ -26,9 +27,12 @@ const Login: NextPage = () => {
    const alertMethodsRef = useRef<AlertMethods>(null)
    const router = useRouter()
    const [errorMessage, setErrorMessage] = useState<ApolloError>()
-   // eslint-disable-next-line @typescript-eslint/no-unused-vars
    const [profile, setProfile] = useLocalStorage<IUserInfo | null>(
       LSKeys.PROFILE,
+      null
+   )
+   const [authorization, setAuthorization] = useLocalStorage<string | null>(
+      LSKeys.AUTHORIZATION,
       null
    )
 
@@ -49,7 +53,8 @@ const Login: NextPage = () => {
             .login(username.value, password.value)
             .then(({ data, isSuccess, message }) => {
                if (isSuccess) {
-                  setProfile(data as IUserInfo)
+                  setProfile(data.profile as IUserInfo)
+                  setAuthorization(data.authorization)
                   router.push('/')
                } else {
                   setErrorMessage({

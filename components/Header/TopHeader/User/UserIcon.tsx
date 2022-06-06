@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
@@ -5,8 +6,6 @@ import useLocalStorage from 'use-local-storage'
 import Link from '~/components/Link'
 import { IUserInfo, LSKeys } from '~/interface'
 import styles from '~/styles/components/header/top-header/user/user-icon.module.css'
-import { generateErrorMessage } from '~/utilities'
-import client from '~/utilities/apollo-client'
 
 export interface UserIconProps {
    icon: string
@@ -14,9 +13,12 @@ export interface UserIconProps {
 
 function UserIcon({ icon }: UserIconProps) {
    const router = useRouter()
-   // eslint-disable-next-line @typescript-eslint/no-unused-vars
    const [profile, setProfile] = useLocalStorage<IUserInfo | null>(
       LSKeys.PROFILE,
+      null
+   )
+   const [authorization, setAuthorization] = useLocalStorage<string | null>(
+      LSKeys.AUTHORIZATION,
       null
    )
    const userIconRef = useRef<HTMLElement>(null)
@@ -28,15 +30,9 @@ function UserIcon({ icon }: UserIconProps) {
    }
 
    function handleLogout() {
-      client.query
-         .logout()
-         .then((res) => {
-            if (res.isSuccess) {
-               setProfile(null)
-               router.push('/login')
-            }
-         })
-         .catch((errors) => console.log(generateErrorMessage(errors)))
+      setProfile(null)
+      setAuthorization(null)
+      router.push('/login')
    }
 
    useEffect(() => {
