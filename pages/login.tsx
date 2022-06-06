@@ -54,7 +54,7 @@ const Login: NextPage = () => {
             .then(({ data, isSuccess, message }) => {
                if (isSuccess) {
                   setProfile(data.profile as IUserInfo)
-                  setAuthorization(data.authorization)
+                  setAuthorization(data.authorization as string)
                   router.push('/')
                } else {
                   setErrorMessage({
