@@ -9,10 +9,10 @@ import useLocalStorage from 'use-local-storage'
 import Alert, { AlertMethods } from '~/components/Alert'
 import IconInputBox from '~/components/IconInputBox'
 import SpinnerButton, { SpinnerButtonMethods } from '~/components/SpinnerButton'
+import { useAxiosClientSelector } from '~/hooks'
 import { IUserInfo, LSKeys } from '~/interface'
 import styles from '~/styles/pages/login.module.css'
 import { generateErrorMessage } from '~/utilities'
-import client from '~/utilities/axios-client'
 
 export const getStaticProps: GetStaticProps = async () => {
    return {
@@ -35,12 +35,13 @@ const Login: NextPage = () => {
       LSKeys.AUTHORIZATION,
       null
    )
+   const axiosClient = useAxiosClientSelector()
 
    if (profile) {
       router.push('/')
    }
 
-   async function handleSubmit(ev: FormEvent) {
+   function handleSubmit(ev: FormEvent) {
       ev.preventDefault()
 
       const spinnerButtonMethods = spinnerButtonMethodsRef.current
@@ -51,12 +52,12 @@ const Login: NextPage = () => {
       if (username && password) {
          console.log('handleSubmit')
 
-         client.query.login(username.value, password.value)
+         axiosClient.query.login(username.value, password.value)
             .then(({ data, isSuccess, message }) => {
                if (isSuccess) {
                   setProfile(data.profile as IUserInfo)
                   setAuthorization(data.accessToken as string)
-                  router.push('/')
+                  setTimeout(() => router.push('/'), 2000)
                } else {
                   setErrorMessage({
                      name: 'Message',
