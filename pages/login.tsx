@@ -60,7 +60,7 @@ const Login: NextPage = () => {
                if (isSuccess) {
                   setProfile(data.profile as IUserInfo)
                   setAuthorization(data.accessToken as string)
-                  setTimeout(() => router.push('/'), 2000)
+                  router.push('/')
                } else {
                   setErrorMessage({
                      name: 'Message',
