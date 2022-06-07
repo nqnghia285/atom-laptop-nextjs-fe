@@ -1,9 +1,22 @@
 import cookie from 'cookie';
+import Cors from 'cors';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Response } from '~/interface';
-import { login  as apolloClientLogin} from '~/utilities/apollo-client';
+import { initMiddleware } from '~/utilities';
+import { login as apolloClientLogin } from '~/utilities/apollo-client';
 
-export default async function login(req: NextApiRequest, res: NextApiResponse) {
+const cors = initMiddleware(
+   Cors({
+      origin: process.env.selfUrl,
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      credentials: true
+   })
+ )
+
+export default async function login(req: NextApiRequest, res: NextApiResponse<Response>) {
+   // Run cors
+   await cors(req, res)
+
    const { username, password } = req.query
    await apolloClientLogin(username as string, password as string)
       .then(response => {
@@ -28,5 +41,5 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
             data: null,
             errors: errors,
             message: 'Login is failed'
-      } as Response)})
+      })})
 }
