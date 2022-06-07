@@ -53,7 +53,10 @@ const Login: NextPage = () => {
          console.log('handleSubmit')
 
          axiosClient.query.login(username.value, password.value)
-            .then(({ data, isSuccess, message }) => {
+            .then(({ data, isSuccess, isSuccess }) => {
+               console.log('data: ', data)
+               console.log('isSuccess: ', isSuccess)
+               console.log('isSuccess: ', isSuccess)
                if (isSuccess) {
                   setProfile(data.profile as IUserInfo)
                   setAuthorization(data.accessToken as string)
