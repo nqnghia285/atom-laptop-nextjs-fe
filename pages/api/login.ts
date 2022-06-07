@@ -11,6 +11,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
             res.setHeader(
                'Set-Cookie',
                cookie.serialize('Authorization', response.data?.accessToken, {
+                  httpOnly: true,
                   sameSite: 'none',
                   secure: true,
                   maxAge: 30 * 24 * 60 * 60, // The cookie expire is one month.
