@@ -27,7 +27,7 @@ function SuggestBox({ className, searchText }: SuggestBoxProps) {
             title: 'lenovo yoga slim 7 pro 16" | AMD Ryzen 7 6800H | RTX 2050',
             image: {
                title: 'Image',
-               mimeType: 'webp',
+               mimeType: 'jpg',
                data: '/images/icon-laptop.webp',
             },
          },
@@ -40,7 +40,7 @@ function SuggestBox({ className, searchText }: SuggestBoxProps) {
             title: 'lenovo yoga slim 7 pro',
             image: {
                title: 'Image',
-               mimeType: 'webp',
+               mimeType: 'jpg',
                data: '/images/icon-laptop.webp',
             },
          },
@@ -53,7 +53,7 @@ function SuggestBox({ className, searchText }: SuggestBoxProps) {
             title: 'lenovo yoga slim 7 pro',
             image: {
                title: 'Image',
-               mimeType: 'webp',
+               mimeType: 'jpg',
                data: '/images/icon-laptop.webp',
             },
          },
