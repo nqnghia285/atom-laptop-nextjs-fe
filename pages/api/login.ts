@@ -33,7 +33,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse<Re
             )
          }
 
-         res.json(response)
+         res.status(200).json(response)
       })
       .catch(errors => {
          console.log(errors)

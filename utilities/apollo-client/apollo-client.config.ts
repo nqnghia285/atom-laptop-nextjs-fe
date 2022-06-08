@@ -1,10 +1,9 @@
-import { ApolloClient, from, InMemoryCache } from '@apollo/client'
+import { ApolloClient, from, HttpLink, InMemoryCache } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
 import { createPersistedQueryLink } from '@apollo/client/link/persisted-queries'
-import { createUploadLink } from 'apollo-upload-client'
 import { sha256 } from 'crypto-hash'
 
-const uploadLink = createUploadLink({
+const link = new HttpLink({
    uri: process.env.apiUrl,
    credentials: 'include',
    useGETForQueries: true
@@ -27,11 +26,11 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 })
 
 export const apolloClient = new ApolloClient({
-   ssrMode: true,
+   // ssrMode: true,
    link: from([
       errorLink,
-      persistedQueryLink, 
-      uploadLink
+      persistedQueryLink,
+      link
    ]),
    cache: new InMemoryCache(),
    connectToDevTools: true,

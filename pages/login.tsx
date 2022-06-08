@@ -13,6 +13,7 @@ import { useAxiosClientSelector } from '~/hooks'
 import { IUserInfo, LSKeys } from '~/interface'
 import styles from '~/styles/pages/login.module.css'
 import { generateErrorMessage } from '~/utilities'
+import apolloClient from '~/utilities/apollo-client'
 
 export const getStaticProps: GetStaticProps = async () => {
    return {
@@ -50,13 +51,11 @@ const Login: NextPage = () => {
       const password = passwordRef.current
 
       if (username && password) {
-         console.log('handleSubmit')
+         spinnerButtonMethods?.showSpinner()
+         spinnerButtonMethods?.disabled()
 
-         axiosClient.query.login(username.value, password.value)
+         apolloClient.query.login(username.value, password.value)
             .then(({ data, isSuccess, message }) => {
-               console.log('data: ', data)
-               console.log('isSuccess: ', isSuccess)
-               console.log('message: ', message)
                if (isSuccess) {
                   setProfile(data.profile as IUserInfo)
                   setAuthorization(data.accessToken as string)
@@ -99,14 +98,6 @@ const Login: NextPage = () => {
          password.onkeydown = hiddenAlert
       }
    }, [userrnameRef, passwordRef, alertMethodsRef])
-
-   useEffect(() => {
-      console.log('mounted')
-
-      return () => console.log('unmounted')
-   }, [])
-
-   console.log('pre-render')
 
    return (
       <div className={styles['login-container']}>
