@@ -15,7 +15,7 @@ const cors = initMiddleware(
 
 export default async function login(req: NextApiRequest, res: NextApiResponse<Response>) {
    // Run cors
-   await cors(req, res)
+   // await cors(req, res)
 
    const { username, password } = req.query
    await apolloClientLogin(username as string, password as string)
@@ -25,13 +25,15 @@ export default async function login(req: NextApiRequest, res: NextApiResponse<Re
                'Set-Cookie',
                cookie.serialize('Authorization', response.data?.accessToken, {
                   httpOnly: true,
-                  sameSite: 'lax',
+                  sameSite: 'strict',
+                  secure: true,
+                  path: '/',
                   maxAge: 30 * 24 * 60 * 60, // The cookie expire is one month.
                })
             )
          }
 
-         res.json(response)
+         res.status(200).json(response)
       })
       .catch(errors => {
          console.log(errors)

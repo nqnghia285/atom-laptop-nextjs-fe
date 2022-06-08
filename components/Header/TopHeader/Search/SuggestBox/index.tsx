@@ -19,45 +19,45 @@ function SuggestBox({ className, searchText }: SuggestBoxProps) {
    ]
 
    const items: MatchingItem[] = [
-      {
-         path: '/products/lenovo/model/product',
-         itemProps: {
-            currentPrice: '20.000.000',
-            dealPrice: '22.000.000',
-            title: 'lenovo yoga slim 7 pro 16" | AMD Ryzen 7 6800H | RTX 2050',
-            image: {
-               title: 'Image',
-               mimeType: 'jpg',
-               data: '/images/icon-laptop.webp',
-            },
-         },
-      },
-      {
-         path: '/products/lenovo/model/product',
-         itemProps: {
-            currentPrice: '20.000.000',
-            dealPrice: '22.000.000',
-            title: 'lenovo yoga slim 7 pro',
-            image: {
-               title: 'Image',
-               mimeType: 'jpg',
-               data: '/images/icon-laptop.webp',
-            },
-         },
-      },
-      {
-         path: '/products/lenovo/model/product',
-         itemProps: {
-            currentPrice: '20.000.000',
-            dealPrice: '22.000.000',
-            title: 'lenovo yoga slim 7 pro',
-            image: {
-               title: 'Image',
-               mimeType: 'jpg',
-               data: '/images/icon-laptop.webp',
-            },
-         },
-      },
+      // {
+      //    path: '/products/lenovo/model/product',
+      //    itemProps: {
+      //       currentPrice: '20.000.000',
+      //       dealPrice: '22.000.000',
+      //       title: 'lenovo yoga slim 7 pro 16" | AMD Ryzen 7 6800H | RTX 2050',
+      //       image: {
+      //          title: 'Image',
+      //          mimeType: 'webp',
+      //          data: '/images/icon-laptop.webp',
+      //       },
+      //    },
+      // },
+      // {
+      //    path: '/products/lenovo/model/product',
+      //    itemProps: {
+      //       currentPrice: '20.000.000',
+      //       dealPrice: '22.000.000',
+      //       title: 'lenovo yoga slim 7 pro',
+      //       image: {
+      //          title: 'Image',
+      //          mimeType: 'webp',
+      //          data: '/images/icon-laptop.webp',
+      //       },
+      //    },
+      // },
+      // {
+      //    path: '/products/lenovo/model/product',
+      //    itemProps: {
+      //       currentPrice: '20.000.000',
+      //       dealPrice: '22.000.000',
+      //       title: 'lenovo yoga slim 7 pro',
+      //       image: {
+      //          title: 'Image',
+      //          mimeType: 'webp',
+      //          data: '/images/icon-laptop.webp',
+      //       },
+      //    },
+      // },
    ]
 
    return (

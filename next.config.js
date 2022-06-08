@@ -1,4 +1,5 @@
 const path = require('path')
+const withImages = require('next-images')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -20,18 +21,33 @@ const nextConfig = {
    },
    webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
       // Important: return the modified config
-      // const { module } = config
-      // const { rules } = module
-      // rules?.push({
-      //    test: /\.(png|jpe?g|gif)$/i,
-      //    use: [
-      //       {
-      //          loader: 'file-loader',
-      //       },
-      //    ],
-      // })
+      const { module: { rules } } = config
+      rules?.push({
+         test: /\.(png|jpe?g|gif|svg|webp)$/i,
+         use: [
+            {
+               loader: 'file-loader',
+            },
+         ],
+      })
       return config
    },
+   exportPathMap: async function (
+      defaultPathMap,
+      { dev, dir, outDir, distDir, buildId }
+    ) {
+      return {
+        '/': { page: '/' },
+        '/about': { page: '/about' },
+        '/login': { page: '/login' },
+      }
+   },
+   images: {
+      loader: 'default',
+      path: './public/',
+      dangerouslyAllowSVG: true,
+      contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+   }
 }
 
 module.exports = nextConfig

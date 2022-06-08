@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export interface IImage {
    title: string
-   mimeType: 'jpg' | 'jpeg' | 'png'
+   mimeType: 'jpg' | 'jpeg' | 'png' | 'webp'
    data: string
 }
 
