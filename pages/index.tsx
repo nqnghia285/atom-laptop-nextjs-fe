@@ -95,7 +95,7 @@ const Home: NextPage = () => {
             console.log('findManyUser', res)
 
             if (res?.isSuccess) {
-               dispatch(usersMethods.actions.addMany(res.data as User[]))
+               dispatch(usersMethods.actions.addMany({ users: res.data as User[], skip: usersMethods.selectors.selectTotal() + (res.data as User[]).length }))
                setContent(JSON.stringify(usersMethods.selectors.selectAll()))
             }
          }
