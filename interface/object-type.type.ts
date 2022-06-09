@@ -1,0 +1,13 @@
+export type ObjectType = 
+                        | 'Comment' 
+                        | 'Customer' 
+                        | 'Discount' 
+                        | 'Image'
+                        | 'Laptop'
+                        | 'Passage'
+                        | 'Person'
+                        | 'Post'
+                        | 'PriceMap'
+                        | 'Purchase'
+                        | 'User'
+                        | 'Video'

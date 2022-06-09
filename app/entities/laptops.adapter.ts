@@ -2,12 +2,12 @@ import { createEntityAdapter, EntityId } from '@reduxjs/toolkit'
 import { Laptop } from 'prisma'
 import { RootState, store } from '../store'
 
-export const laptopAdapter = createEntityAdapter<Laptop>({
+export const laptopsAdapter = createEntityAdapter<Laptop>({
    selectId: (laptop) => laptop.id,
    sortComparer: (a, b) => a.id - b.id,
 })
 
-export const laptopsSelectors = laptopAdapter.getSelectors<RootState>(
+export const laptopsSelectors = laptopsAdapter.getSelectors<RootState>(
    (state) => state.laptops
 )
 

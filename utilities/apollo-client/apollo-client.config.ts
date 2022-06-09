@@ -2,12 +2,25 @@ import { ApolloClient, from, HttpLink, InMemoryCache } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
 import { createPersistedQueryLink } from '@apollo/client/link/persisted-queries'
 import { sha256 } from 'crypto-hash'
+import { LSKeys } from '~/interface'
+
+function getAuthorization() {
+   const authToken = typeof window !== 'undefined'
+   ? `Bearer ${JSON.parse(window.localStorage.getItem(LSKeys.AUTHORIZATION))}`
+   : 'null'
+   return authToken
+}
 
 const link = new HttpLink({
    uri: process.env.apiUrl,
    credentials: 'include',
-   useGETForQueries: true
+   useGETForQueries: true,
+   headers: {
+      Authorization: getAuthorization()
+   }
 })
+
+console.log(link)
 
 const persistedQueryLink = createPersistedQueryLink({ 
    sha256,

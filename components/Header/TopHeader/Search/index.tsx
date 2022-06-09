@@ -21,42 +21,42 @@ export interface SearchMethods {
 
 function Search(_props: object, ref: Ref<SearchMethods>) {
    const searchFormRef = useRef<HTMLFormElement>(null)
-   const searchTextRef = useRef<HTMLInputElement>(null)
+   const searchTextInputRef = useRef<HTMLInputElement>(null)
    const [key, setKey] = useState('')
 
-   const debouncedValue = useSearch(key)
+   const searchText = useSearch(key)
 
    useEffect(() => {
-      console.log(debouncedValue)
-   }, [debouncedValue])
+      console.log(searchText)
+   }, [searchText])
 
    useEffect(() => {
-      const searchText = searchTextRef.current
+      const searchTextInput = searchTextInputRef.current
 
       function handleKeyUp(ev: KeyboardEvent) {
          setKey((ev.target as HTMLInputElement).value)
       }
 
-      if (searchText) {
-         searchText.addEventListener('keyup', handleKeyUp, true)
+      if (searchTextInput) {
+         searchTextInput.addEventListener('keyup', handleKeyUp, true)
       }
 
-      return () => searchText?.removeEventListener('keyup', handleKeyUp, true)
-   }, [searchTextRef, setKey])
+      return () => searchTextInput?.removeEventListener('keyup', handleKeyUp, true)
+   }, [searchTextInputRef, setKey])
 
    useImperativeHandle(
       ref,
       () => ({
          setOnChange(calllback) {
-            const searchText = searchTextRef.current
-            if (searchText) {
-               searchText.onchange = calllback
+            const searchTextInput = searchTextInputRef.current
+            if (searchTextInput) {
+               searchTextInput.onchange = calllback
             }
          },
          setOnKeyDown(callback) {
-            const searchText = searchTextRef.current
-            if (searchText) {
-               searchText.onkeydown = callback
+            const searchTextInput = searchTextInputRef.current
+            if (searchTextInput) {
+               searchTextInput.onkeydown = callback
             }
          },
          setOnSubmit(callback) {
@@ -66,11 +66,11 @@ function Search(_props: object, ref: Ref<SearchMethods>) {
             }
          },
          value() {
-            const searchText = searchTextRef.current
-            return searchText?.value
+            const searchTextInput = searchTextInputRef.current
+            return searchTextInput?.value
          },
       }),
-      [searchFormRef, searchTextRef]
+      [searchFormRef, searchTextInputRef]
    )
 
    return (
@@ -78,7 +78,7 @@ function Search(_props: object, ref: Ref<SearchMethods>) {
          <form ref={searchFormRef} role='search' className={styles.search}>
             <div className={styles['search-text']}>
                <Input
-                  ref={searchTextRef}
+                  ref={searchTextInputRef}
                   type='search'
                   color='info'
                   fontSize='sm'
@@ -88,7 +88,7 @@ function Search(_props: object, ref: Ref<SearchMethods>) {
                   aria-autocomplete='both'
                />
 
-               <SuggestBox searchText={searchTextRef.current?.value ?? ''} />
+               <SuggestBox searchText={searchText} />
             </div>
 
             <button type={'submit'}>

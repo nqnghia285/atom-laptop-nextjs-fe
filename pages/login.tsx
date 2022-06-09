@@ -9,11 +9,10 @@ import useLocalStorage from 'use-local-storage'
 import Alert, { AlertMethods } from '~/components/Alert'
 import IconInputBox from '~/components/IconInputBox'
 import SpinnerButton, { SpinnerButtonMethods } from '~/components/SpinnerButton'
-import { useAxiosClientSelector } from '~/hooks'
+import { useApolloClientSelector } from '~/hooks'
 import { IUserInfo, LSKeys } from '~/interface'
 import styles from '~/styles/pages/login.module.css'
 import { generateErrorMessage } from '~/utilities'
-import apolloClient from '~/utilities/apollo-client'
 
 export const getStaticProps: GetStaticProps = async () => {
    return {
@@ -36,7 +35,7 @@ const Login: NextPage = () => {
       LSKeys.AUTHORIZATION,
       null
    )
-   const axiosClient = useAxiosClientSelector()
+   const apolloClient = useApolloClientSelector()
 
    if (profile) {
       router.push('/')

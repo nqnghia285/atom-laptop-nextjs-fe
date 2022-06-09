@@ -1,0 +1,12 @@
+export type Actions =
+   | 'aggregate'
+   | 'count'
+   | 'create'
+   | 'createMany'
+   | 'delete'
+   | 'deleteMany'
+   | 'findFirst'
+   | 'findMany'
+   | 'findUnique'
+   | 'groupBy'
+   | 'update'
