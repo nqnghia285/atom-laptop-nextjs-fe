@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import useLocalStorage from 'use-local-storage'
 import { IUserInfo, LSKeys } from '~/interface'
-import client from '~/utilities/apollo-client'
+import { client } from '~/utilities/apollo-client'
 
 export async function useAuthenticateUser() {
    const [profile, setProfile] = useLocalStorage<IUserInfo | null>(

@@ -6,7 +6,7 @@ import { LSKeys } from '~/interface'
 
 function getAuthorization() {
    const authToken = typeof window !== 'undefined'
-   ? `Bearer ${JSON.parse(window.localStorage.getItem(LSKeys.AUTHORIZATION))}`
+   ? `Bearer ${JSON.parse(window.localStorage.getItem(LSKeys.AUTHORIZATION) ?? 'null')}`
    : 'null'
    return authToken
 }
@@ -19,8 +19,6 @@ const link = new HttpLink({
       Authorization: getAuthorization()
    }
 })
-
-console.log(link)
 
 const persistedQueryLink = createPersistedQueryLink({ 
    sha256,
